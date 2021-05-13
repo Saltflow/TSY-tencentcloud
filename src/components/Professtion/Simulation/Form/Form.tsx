@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 import React, { FC, memo, useState, useEffect } from 'react'
 import BootstrapTable from 'react-bootstrap-table-next'
 import cellEditFactory, { Type } from 'react-bootstrap-table2-editor'
@@ -68,6 +69,27 @@ export const Form: FC<Props> = memo(function Form({ data, handleNext }) {
         }
         setPass(equal)
     }
+
+    function placeholderStyle(cell, row, rowIndex, colIndex){
+        if(cell === "请描述用户对该功能的态度及原因" || cell === "下拉菜单选择  ▼") {
+            return {
+                color: "#C4C4C4"
+            }
+        }
+        else{
+            return {
+                    width: "300px",
+                    height: "105px",
+                    fontSize: "16px"
+            }
+        }
+    }
+
+    const newCols = columns.map((cols, idx) => {
+        let newcols = cols;
+        newcols.style = placeholderStyle
+        return newcols
+    })
 
     function handleCheck() {}
 
